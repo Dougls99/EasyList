@@ -5,10 +5,10 @@ interface Props {
     value: any;
     placeholder: string;
     onChange: any;
-    secureText?: boolean; 
+    keyboard?: any; 
 }
 
-export default function Input({value, placeholder, onChange, secureText}:Props) {
+export default function Input({value, placeholder, onChange, keyboard}:Props) {
   return (
     <View>
         <TextInput
@@ -16,10 +16,8 @@ export default function Input({value, placeholder, onChange, secureText}:Props) 
             placeholder={placeholder}
             value={value}
             onChangeText={onChange}
-            keyboardType="email-address"
-            secureTextEntry={secureText}
-            enablesReturnKeyAutomatically
-            
+            keyboardType={keyboard}
+            secureTextEntry     
         />
     </View>
   )
