@@ -1,10 +1,23 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, StyleSheet } from 'react-native'
+import Title from '../../components/Title'
+import Card from '../../components/Card';
 
 export function HomeScreen() {
   return (
-    <View>
-      <Text>Home</Text>
+    <View style={styles.container}>
+
+      <Title text='EasyList' />
+
+      <Card />
+
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 50,
+  },
+});
