@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { View, StyleSheet, ImageBackground, Alert } from 'react-native';
 import { propsStack } from '../../routes';
 
+import { auth } from "../../dataBase/firebase";
+
 import Title from '../../components/Title';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -11,10 +13,23 @@ export const SubscribeScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const validateEmail = (email: string) => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+  };
 
   const handleSubscribe = () => {
-    Alert.alert('Login bem-sucedido');
-    setEmail('');
+    if (validateEmail(email) && password.length >= 6 ) {
+      auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential: { user: any; }) => {
+        const user = userCredential.user;
+        console.log('Usuário criado: ', user)
+        navigation.navigate('Login');
+      })
+    } else {
+      Alert.alert('Credenciais inválidas');
+    }
   };
 
   const navigation = useNavigation<propsStack>();
@@ -28,23 +43,32 @@ export const SubscribeScreen = () => {
     <ImageBackground style={styles.background} source={require('../../images/ft_subscribe.jpg')} />
     <View style={styles.container}>
 
-      <Title text='Registre-se!' />
       
-      <Input
-        onChange={setEmail}
-        placeholder='Digite seu email'
-        value={email}
-      />
-      
-      <Input
-        onChange={setPassword}
-        placeholder='Digite sua Senha'
-        value={password}
-      />
+      <View style={styles.input}>
+        
+        <Title text='Registre-se!' />
+        
+        <Input
+          onChange={setEmail}
+          placeholder='Digite seu email'
+          value={email}
+          keyboard='email-address'
+          />
+        
+        <Input
+          onChange={setPassword}
+          placeholder='Digite sua Senha'
+          value={password}
+          keyboard='password'
+        
+        />
+      </View>
 
-      <Button action={handleSubscribe} value='Inscrever-se!' />
+      <View style={styles.buttons} >
+        <Button action={handleSubscribe} value='Inscrever-se' />
+        <Button action={handleLogin} value='Login' />
+      </View>
 
-      <Button action={handleLogin} value='Login' />
 
     </View>
 </>
@@ -52,14 +76,22 @@ export const SubscribeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 16,
-    },
-    background: {
-        flex: 1,
-        resizeMode: 'cover',
-    },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 10,
+  },
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
+  buttons: {
+    flexDirection: 'row',
+    margin: 2,
+    justifyContent: 'space-around',
+    marginBottom: 5,
+  },
+  input: {
+    alignItems: 'center',
+  },
 });
