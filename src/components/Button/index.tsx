@@ -18,11 +18,10 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: 'blue',
         paddingVertical: 10,
-        paddingHorizontal: 12,
+        paddingHorizontal: 20,
         borderRadius: 5,
         opacity: 1,
         marginTop: 5,
-        elevation: 8,
     },
       buttonText: {
         color: 'white',
