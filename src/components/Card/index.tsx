@@ -1,17 +1,14 @@
-import { View, Text, TextInput , StyleSheet } from 'react-native'
+import { View, Text , StyleSheet,} from 'react-native'
 import React from 'react'
 
+interface Props {
+  value: any;
+}
 
-export default function Card() {
+export default function Card({value}:Props) {
   return (
     <View style={styles.card}>
-      
-        <TextInput style={styles.nameProduct} placeholder='Nome do Produto' />
-
-        <View style={styles.count} >
-            <Text>0</Text>
-        </View>
-
+      <Text style={styles.nameProduct} >{value}</Text>
     </View>
   )
 }
@@ -19,20 +16,15 @@ export default function Card() {
 const styles = StyleSheet.create({
     card: {
         backgroundColor: "red",
-        width: 350,
-        height: 80,
-        borderRadius: 30,
+        width: 300,
+        height: 70,
+        borderRadius: 20,
+        justifyContent: 'center',
     },
     nameProduct: {
         fontSize: 25,
         color: "white",
-        textAlign: 'left',
+        textAlign: 'center',
         padding: 20,
-    },
-    count: {
-        width: 25,
-        height: 25,
-        backgroundColor: "gray",
-        alignItems: 'center',
     },
 });
