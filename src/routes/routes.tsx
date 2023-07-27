@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { LoginScreen, SubscribeScreen, HomeScreen } from '../screens';
+import { LoginScreen, SubscribeScreen, HomeScreen, CartScreen } from '../screens';
 import { propsNavigationStack } from '.';
 
 const MainStack = createNativeStackNavigator<propsNavigationStack>();
@@ -21,6 +21,11 @@ export const MainStackComponent = () => {
 			<MainStack.Screen 
 				name="Home" 
 				component={HomeScreen}
+				options={{ headerShown: false }} 
+				/>
+			<MainStack.Screen 
+				name="Cart" 
+				component={CartScreen}
 				options={{ headerShown: false }} 
 				/>
 		</MainStack.Navigator>
