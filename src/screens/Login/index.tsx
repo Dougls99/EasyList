@@ -5,7 +5,7 @@ import { View, Alert, StyleSheet, ImageBackground, } from 'react-native';
 import { propsStack } from '../../routes';
 import { auth } from '../../dataBase/firebase';
 
-import Input from '../../components/Input';
+import {InputSenha, InputLogin} from '../../components/Inputs';
 import Title  from '../../components/Title'
 import Button from '../../components/Button';
 import TextButton from '../../components/TextButton';
@@ -57,14 +57,14 @@ export const LoginScreen = () => {
     <View style={styles.input}>
         <Title text='EasyList' />
 
-        <Input
+        <InputLogin
           onChange={setEmail}
           placeholder="Email"
           value={email}
           keyboard='email-address'
         />
 
-         <Input 
+         <InputSenha
           onChange={setPassword}
           placeholder="Senha"
           value={password}

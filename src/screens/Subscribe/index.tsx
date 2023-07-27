@@ -6,7 +6,7 @@ import { propsStack } from '../../routes';
 import { auth } from "../../dataBase/firebase";
 
 import Title from '../../components/Title';
-import Input from '../../components/Input';
+import { InputLogin, InputSenha } from '../../components/Inputs';
 import Button from '../../components/Button';
 
 export const SubscribeScreen = () => {
@@ -48,14 +48,14 @@ export const SubscribeScreen = () => {
         
         <Title text='Registre-se!' />
         
-        <Input
+        <InputLogin
           onChange={setEmail}
           placeholder='Digite seu email'
           value={email}
           keyboard='email-address'
           />
         
-        <Input
+        <InputSenha
           onChange={setPassword}
           placeholder='Digite sua Senha'
           value={password}
